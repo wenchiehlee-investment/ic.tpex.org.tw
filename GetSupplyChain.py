@@ -86,19 +86,26 @@ def get_chain_data(chain_code):
 
             subcat = subcategory_info[subcat_code]
 
-            # Get all company links from ALL tables in this div
-            company_links = div.find_all('a', href=re.compile(r'stk_code='))
+            # Get all company links from ALL tables in this div (including foreign companies)
+            company_links = div.find_all('a', href=True)
             for link in company_links:
                 href = link.get('href', '')
-                match = re.search(r'stk_code=(\d+)', href)
-                if not match:
-                    continue
-
-                stock_code = match.group(1)
                 stock_name = link.get('title', link.get_text(strip=True))
 
-                # Create unique key to avoid duplicates
-                key = f"{subcat_code}:{stock_code}"
+                # Skip empty names or navigation links
+                if not stock_name or stock_name in ['更多', '...']:
+                    continue
+
+                # Check if it's a Taiwan stock (has stk_code)
+                match = re.search(r'stk_code=(\d+)', href)
+                if match:
+                    stock_code = match.group(1)
+                else:
+                    # Foreign company - use empty code
+                    stock_code = ''
+
+                # Create unique key to avoid duplicates (use name for foreign companies)
+                key = f"{subcat_code}:{stock_code or stock_name}"
                 if key in seen_combinations:
                     continue
                 seen_combinations.add(key)
