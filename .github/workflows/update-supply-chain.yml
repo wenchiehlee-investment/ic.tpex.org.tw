@@ -24,10 +24,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 yfinance
 
       - name: Download watchlist
         run: python Get觀察名單.py
+
+      - name: Update foreign company mappings
+        run: python UpdateNonTWSE.py
 
       - name: Download supply chain data
         run: python GetSupplyChain.py
