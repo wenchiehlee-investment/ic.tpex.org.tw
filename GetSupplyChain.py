@@ -24,6 +24,22 @@ HEADERS = {
 }
 VERIFY_SSL = False
 
+# Global mapping for foreign companies
+FOREIGN_COMPANY_MAP = {}
+
+def load_foreign_company_map():
+    """載入外國企業對照表"""
+    global FOREIGN_COMPANY_MAP
+    import os
+    filepath = 'data/non-TWSE-TPEX.csv'
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                if row['名稱'] and row['股票代號']:
+                    FOREIGN_COMPANY_MAP[row['名稱']] = row['股票代號']
+        print(f"  載入 {len(FOREIGN_COMPANY_MAP)} 筆外國企業對照")
+
 def get_chain_data(chain_code):
     """取得產業鏈的完整資料（子分類、位置、公司清單）"""
     url = f"{BASE_URL}/introduce.php?ic={chain_code}"
@@ -137,10 +153,15 @@ def export_chain_csv(data, chain_code, chain_name, output_path):
         writer.writeheader()
 
         for row in data:
+            # Use foreign company map if stock_code is empty
+            stock_code = row['stock_code']
+            if not stock_code and row['stock_name'] in FOREIGN_COMPANY_MAP:
+                stock_code = FOREIGN_COMPANY_MAP[row['stock_name']]
+
             writer.writerow({
                 '位置': row['position'],
                 '子分類': row['subcategory'],
-                '代號': row['stock_code'],
+                '代號': stock_code,
                 '名稱': row['stock_name']
             })
 
@@ -239,9 +260,12 @@ def main():
     os.makedirs('data', exist_ok=True)
 
     print("=" * 60)
-    print(f"產業鏈資料下載程式 v2.0")
+    print(f"產業鏈資料下載程式 v2.1")
     print(f"執行時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
+
+    # Load foreign company mapping
+    load_foreign_company_map()
 
     # Industry chains to download
     chains = {

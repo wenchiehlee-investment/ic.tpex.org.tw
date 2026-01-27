@@ -15,8 +15,11 @@ python3 Get觀察名單.py
 # 下載產業鏈資料（21 個產業鏈）
 python3 GetSupplyChain.py
 
+# 更新外國企業股票代號對照表
+python3 UpdateNonTWSE.py
+
 # 安裝相依套件
-pip install requests beautifulsoup4
+pip install requests beautifulsoup4 yfinance
 ```
 
 ## 架構說明
@@ -35,6 +38,12 @@ pip install requests beautifulsoup4
   - `raw_SupplyChain_{code}.csv` - 各產業鏈資料，格式: `位置,子分類,代號,名稱`
   - `raw_SupplyChainMap.csv` - 觀察名單公司的產業鏈地圖
     - 格式: `代號,名稱,產業鏈代碼,產業鏈名稱,位置,子分類,上游公司,下游公司`
+
+### UpdateNonTWSE.py - 外國企業股票代號對照表
+- `extract_foreign_companies()` - 從產業鏈 CSV 擷取外國企業名稱
+- `KNOWN_MAPPINGS` - 手動維護的常見外國企業對照表（約 130 家）
+- 輸出: `data/non-TWSE-TPEX.csv` - 格式: `名稱,股票代號,交易所`
+- GetSupplyChain.py 會自動載入此對照表填入外國企業股票代號
 
 ### .github/workflows/update-supply-chain.yml - GitHub Actions 自動更新
 - 每週日 00:00 UTC (台灣時間 08:00) 自動執行
