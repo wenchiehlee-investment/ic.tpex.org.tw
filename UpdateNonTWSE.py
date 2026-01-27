@@ -209,7 +209,7 @@ def extract_foreign_companies():
 def load_existing_mappings():
     """載入現有的對照表"""
     mappings = {}
-    filepath = 'data/non-TWSE-TPEX.csv'
+    filepath = 'data/raw_non-TWSE-TPEX.csv'
 
     if os.path.exists(filepath):
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -240,7 +240,7 @@ def search_yahoo_finance(company_name):
 
 def update_csv(companies, mappings):
     """更新 non-TWSE-TPEX.csv"""
-    filepath = 'data/non-TWSE-TPEX.csv'
+    filepath = 'data/raw_non-TWSE-TPEX.csv'
 
     results = []
     for name in companies:
@@ -303,7 +303,7 @@ def main():
     print(f"  已被收購: {acquired} 家")
     print(f"  待查詢: {len(results) - with_symbol} 家")
 
-    print(f"\n📄 已匯出至 data/non-TWSE-TPEX.csv")
+    print(f"\n📄 已匯出至 data/raw_non-TWSE-TPEX.csv")
     print("\n" + "=" * 60)
     print("處理完成!")
 

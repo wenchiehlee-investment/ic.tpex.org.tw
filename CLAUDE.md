@@ -42,7 +42,7 @@ pip install requests beautifulsoup4 yfinance
 ### UpdateNonTWSE.py - 外國企業股票代號對照表
 - `extract_foreign_companies()` - 從產業鏈 CSV 擷取外國企業名稱
 - `KNOWN_MAPPINGS` - 手動維護的常見外國企業對照表（約 130 家）
-- 輸出: `data/non-TWSE-TPEX.csv` - 格式: `名稱,股票代號,交易所`
+- 輸出: `data/raw_non-TWSE-TPEX.csv` - 格式: `名稱,股票代號,交易所`
 - GetSupplyChain.py 會自動載入此對照表填入外國企業股票代號
 
 ### .github/workflows/update-supply-chain.yml - GitHub Actions 自動更新
