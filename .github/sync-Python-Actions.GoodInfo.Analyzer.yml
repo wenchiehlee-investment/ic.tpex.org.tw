@@ -1,7 +1,47 @@
 group:
   - files:
-      - source: data/raw_SupplyChain_*.csv
-        dest:   data/stage1_raw/raw_SupplyChain_*.csv
+      - source: data/raw_SupplyChain_5200.csv
+        dest:   data/stage1_raw/raw_SupplyChain_5200.csv
+      - source: data/raw_SupplyChain_5300.csv
+        dest:   data/stage1_raw/raw_SupplyChain_5300.csv
+      - source: data/raw_SupplyChain_5500.csv
+        dest:   data/stage1_raw/raw_SupplyChain_5500.csv
+      - source: data/raw_SupplyChain_5800.csv
+        dest:   data/stage1_raw/raw_SupplyChain_5800.csv
+      - source: data/raw_SupplyChain_6000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_6000.csv
+      - source: data/raw_SupplyChain_B000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_B000.csv
+      - source: data/raw_SupplyChain_C100.csv
+        dest:   data/stage1_raw/raw_SupplyChain_C100.csv
+      - source: data/raw_SupplyChain_C200.csv
+        dest:   data/stage1_raw/raw_SupplyChain_C200.csv
+      - source: data/raw_SupplyChain_D000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_D000.csv
+      - source: data/raw_SupplyChain_F000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_F000.csv
+      - source: data/raw_SupplyChain_G000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_G000.csv
+      - source: data/raw_SupplyChain_I000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_I000.csv
+      - source: data/raw_SupplyChain_L000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_L000.csv
+      - source: data/raw_SupplyChain_M000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_M000.csv
+      - source: data/raw_SupplyChain_P000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_P000.csv
+      - source: data/raw_SupplyChain_R000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_R000.csv
+      - source: data/raw_SupplyChain_R300.csv
+        dest:   data/stage1_raw/raw_SupplyChain_R300.csv
+      - source: data/raw_SupplyChain_T000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_T000.csv
+      - source: data/raw_SupplyChain_U000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_U000.csv
+      - source: data/raw_SupplyChain_V000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_V000.csv
+      - source: data/raw_SupplyChain_X000.csv
+        dest:   data/stage1_raw/raw_SupplyChain_X000.csv
       - source: data/raw_SupplyChainMap.csv
         dest:   data/stage1_raw/raw_SupplyChainMap.csv
     repos: |
