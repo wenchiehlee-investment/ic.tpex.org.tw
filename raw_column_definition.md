@@ -52,7 +52,7 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 
 ### Notes:
 - Taiwan stocks have numeric codes (e.g., `2330`)
-- Foreign companies use stock symbols from `raw_non-TWSE-TPEX.csv` (e.g., `ARM`, `NVDA`)
+- Foreign companies use stock symbols from `raw_SupplyChain-non-TWSE-TPEX.csv` (e.g., `ARM`, `NVDA`)
 - Private or unlisted companies have empty `代號`
 
 ---
@@ -83,7 +83,7 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 
 ---
 
-## raw_non-TWSE-TPEX.csv (Foreign Company Stock Symbol Mapping)
+## raw_SupplyChain-non-TWSE-TPEX.csv (Foreign Company Stock Symbol Mapping)
 **No:** 23
 **Source:** Manual mapping + `KNOWN_MAPPINGS` in `UpdateNonTWSE.py`
 **Extraction Strategy:** Extract foreign company names from supply chain data, map to stock symbols.
