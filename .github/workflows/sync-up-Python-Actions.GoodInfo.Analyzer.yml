@@ -7,7 +7,9 @@ on:
      branches:
        - main
      paths:
-       - data/raw_SupplyChainMap.csv             # 僅在此檔案變更時觸發
+       - data/raw_SupplyChain*.csv
+       - data/raw_SupplyChainMap.csv
+       - data/raw_SupplyChain-non-TWSE-TPEX.csv
 
 jobs:
   sync-backup-workflow:
