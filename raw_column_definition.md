@@ -12,7 +12,7 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 ---
 
 ## raw_SupplyChain_{code}.csv (Industry Chain Company List)
-**No:** 1-21
+**No:** 40
 **Source:** `https://ic.tpex.org.tw/introduce.php?ic={chain_code}`
 **Extraction Strategy:** Scrape company lists from each industry chain page, including Taiwan stocks and foreign companies.
 
@@ -41,7 +41,7 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 | G000 | 平面顯示器 |
 | P000 | 電機機械 |
 
-### Columns
+### Column Definitions:
 
 | Column | Position | Type | Description | Example |
 |--------|----------|------|-------------|---------|
@@ -58,11 +58,11 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 ---
 
 ## raw_SupplyChainMap.csv (Watchlist Company Supply Chain Map)
-**No:** 22
+**No:** 41
 **Source:** Derived from `raw_SupplyChain_{code}.csv` files
 **Extraction Strategy:** Map watchlist companies to their industry chains with upstream/downstream relationships.
 
-### Columns
+### Column Definitions:
 
 | Column | Position | Type | Description | Example |
 |--------|----------|------|-------------|---------|
@@ -84,11 +84,11 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 ---
 
 ## raw_SupplyChain-non-TWSE-TPEX.csv (Foreign Company Stock Symbol Mapping)
-**No:** 23
+**No:** 42
 **Source:** Manual mapping + `KNOWN_MAPPINGS` in `UpdateNonTWSE.py`
 **Extraction Strategy:** Extract foreign company names from supply chain data, map to stock symbols.
 
-### Columns
+### Column Definitions:
 
 | Column | Position | Type | Description | Example |
 |--------|----------|------|-------------|---------|
