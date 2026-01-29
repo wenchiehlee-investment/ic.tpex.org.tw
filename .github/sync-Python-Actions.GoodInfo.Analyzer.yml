@@ -44,5 +44,7 @@ group:
         dest:   data/stage1_raw/raw_SupplyChain_X000.csv
       - source: data/raw_SupplyChainMap.csv
         dest:   data/stage1_raw/raw_SupplyChainMap.csv
+      - source: data/raw_non-TWSE-TPEX.csv
+        dest:   data/stage1_raw/raw_non-TWSE-TPEX.csv
     repos: |
         wenchiehlee-investment/Python-Actions.GoodInfo.Analyzer
