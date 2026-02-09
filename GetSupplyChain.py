@@ -31,7 +31,7 @@ def load_foreign_company_map():
     """載入外國企業對照表"""
     global FOREIGN_COMPANY_MAP
     import os
-    filepath = 'data/raw_non-TWSE-TPEX.csv'
+    filepath = 'data/raw_SupplyChain-non-TWSE-TPEX.csv'
     if os.path.exists(filepath):
         with open(filepath, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
