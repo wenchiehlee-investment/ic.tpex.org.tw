@@ -1,5 +1,7 @@
+#.github/sync-Python-Actions.GoodInfo.Analyzer.yml
 group:
   - files:
+      # No. 40: Supply chain company lists
       - source: data/raw_SupplyChain_5200.csv
         dest:   data/stage1_raw/raw_SupplyChain_5200.csv
       - source: data/raw_SupplyChain_5300.csv
@@ -42,8 +44,10 @@ group:
         dest:   data/stage1_raw/raw_SupplyChain_V000.csv
       - source: data/raw_SupplyChain_X000.csv
         dest:   data/stage1_raw/raw_SupplyChain_X000.csv
+      # No. 41: Supply chain map
       - source: data/raw_SupplyChainMap.csv
         dest:   data/stage1_raw/raw_SupplyChainMap.csv
+      # No. 42: Non-TWSE/TPEX foreign companies
       - source: data/raw_SupplyChain-non-TWSE-TPEX.csv
         dest:   data/stage1_raw/raw_SupplyChain-non-TWSE-TPEX.csv
     repos: |
