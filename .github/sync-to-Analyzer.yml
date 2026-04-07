@@ -50,5 +50,8 @@ group:
       # No. 42: Non-TWSE/TPEX foreign companies
       - source: data/raw_SupplyChain-non-TWSE-TPEX.csv
         dest:   data/stage1_raw/raw_SupplyChain-non-TWSE-TPEX.csv
+      # No. 40-42: Metadata definition
+      - source: raw_column_definition.md
+        dest:   definitions/raw_column_definition_ic.tpex.org.tw.md
     repos: |
         wenchiehlee-investment/Python-Actions.GoodInfo.Analyzer

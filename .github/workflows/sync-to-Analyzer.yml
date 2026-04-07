@@ -11,6 +11,7 @@ on:
        - data/raw_SupplyChain*.csv
        - data/raw_SupplyChainMap.csv
        - data/raw_SupplyChain-non-TWSE-TPEX.csv
+       - raw_column_definition.md
 
 concurrency:
   group: sync-analyzer
@@ -27,7 +28,7 @@ jobs:
         uses: BetaHuhn/repo-file-sync-action@latest
         with:
           GH_PAT: ${{ secrets.REPO_FILE_SYNC_WENCHIEHLEE_INVESTMENT }}
-          CONFIG_PATH: .github/sync-Python-Actions.GoodInfo.Analyzer.yml
+          CONFIG_PATH: .github/sync-to-Analyzer.yml
           COMMIT_EACH_FILE: false
           PR_LABELS: "automated-sync"
           # Uncomment to skip Pull Request and push directly
