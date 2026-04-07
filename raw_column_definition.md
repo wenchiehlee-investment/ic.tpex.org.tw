@@ -1,6 +1,6 @@
 ---
 source: https://raw.githubusercontent.com/wenchiehlee-investment/ic.tpex.org.tw/refs/heads/main/raw_column_definition.md
-destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Actions.GoodInfo.Analyzer/refs/heads/main/raw_column_definition.md
+destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Actions.GoodInfo.Analyzer/refs/heads/main/definitions/raw_column_definition_ic.tpex.org.tw.md
 ---
 
 # Raw CSV Column Definitions - ic.tpex.org.tw v1.0.0
