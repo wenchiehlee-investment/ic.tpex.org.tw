@@ -21,6 +21,8 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 | `子分類` | **Column 2** | string | Subcategory name | `IP設計`, `晶圓代工` |
 | `代號` | **Column 3** | string | Stock code (Taiwan or foreign) | `2330`, `ARM`, `` (empty for private) |
 | `名稱` | **Column 4** | string | Company name | `台積電`, `安謀` |
+| `download_timestamp` | **Column 5** | datetime | Source data retrieval timestamp | `2026-04-29 04:10:25` |
+| `process_timestamp` | **Column 6** | datetime | CSV generation timestamp | `2026-04-29 04:10:25` |
 
 ---
 
@@ -41,6 +43,8 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 | `子分類` | **Column 6** | string | Subcategory(ies) | `晶圓代工;先進封裝` |
 | `上游公司` | **Column 7** | string | Upstream companies | `2454\|聯發科;3034\|聯詠` |
 | `下游公司` | **Column 8** | string | Downstream companies | `2317\|鴻海;2382\|廣達` |
+| `download_timestamp` | **Column 9** | datetime | Source data retrieval timestamp | `2026-04-29 04:10:25` |
+| `process_timestamp` | **Column 10** | datetime | CSV generation timestamp | `2026-04-29 04:10:25` |
 
 ---
 
@@ -56,3 +60,5 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 | `名稱` | **Column 1** | string | Company name (Chinese or English) | `安謀`, `NVIDIA` |
 | `股票代號` | **Column 2** | string | Stock symbol | `ARM`, `NVDA`, `` (empty if private) |
 | `交易所` | **Column 3** | string | Exchange code | `NASDAQ`, `NYSE`, `TSE`, `KRX`, `Private` |
+| `download_timestamp` | **Column 4** | datetime | Source data retrieval timestamp | `2026-04-29 04:10:25` |
+| `process_timestamp` | **Column 5** | datetime | CSV generation timestamp | `2026-04-29 04:10:25` |
