@@ -254,15 +254,21 @@ def update_csv(companies, mappings):
             symbol = ''
             exchange = ''
 
+        process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         results.append({
             '名稱': name,
             '股票代號': symbol,
-            '交易所': exchange
+            '交易所': exchange,
+            'download_timestamp': process_timestamp,
+            'process_timestamp': process_timestamp
         })
 
     # Write CSV
     with open(filepath, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=['名稱', '股票代號', '交易所'])
+        writer = csv.DictWriter(
+            f,
+            fieldnames=['名稱', '股票代號', '交易所', 'download_timestamp', 'process_timestamp']
+        )
         writer.writeheader()
         writer.writerows(results)
 

@@ -146,7 +146,8 @@ def get_chain_data(chain_code):
 
 def export_chain_csv(data, chain_code, chain_name, output_path):
     """匯出產業鏈 CSV"""
-    fieldnames = ['位置', '子分類', '代號', '名稱']
+    process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    fieldnames = ['位置', '子分類', '代號', '名稱', 'download_timestamp', 'process_timestamp']
 
     with open(output_path, 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -162,7 +163,9 @@ def export_chain_csv(data, chain_code, chain_name, output_path):
                 '位置': row['position'],
                 '子分類': row['subcategory'],
                 '代號': stock_code,
-                '名稱': row['stock_name']
+                '名稱': row['stock_name'],
+                'download_timestamp': process_timestamp,
+                'process_timestamp': process_timestamp
             })
 
     print(f"  📄 已匯出至 {output_path} ({len(data)} 筆)")
@@ -243,7 +246,15 @@ def build_supply_chain_map(chain_names):
 
     # Write CSV
     output_path = 'data/raw_SupplyChainMap.csv'
-    fieldnames = ['代號', '名稱', '產業鏈代碼', '產業鏈名稱', '位置', '子分類', '上游公司', '下游公司']
+    process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    fieldnames = [
+        '代號', '名稱', '產業鏈代碼', '產業鏈名稱', '位置', '子分類', '上游公司', '下游公司',
+        'download_timestamp', 'process_timestamp'
+    ]
+    for row in results:
+        row['download_timestamp'] = process_timestamp
+        row['process_timestamp'] = process_timestamp
+
     with open(output_path, 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
