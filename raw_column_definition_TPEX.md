@@ -13,6 +13,8 @@ destination: https://raw.githubusercontent.com/wenchiehlee-investment/Python-Act
 **Source:** `https://ic.tpex.org.tw/introduce.php?ic={chain_code}`
 **Extraction Strategy:** Scrape company lists from each industry chain page, including Taiwan stocks and foreign companies.
 
+**Concrete CSV files covered:** `raw_SupplyChain_5200.csv`, `raw_SupplyChain_5300.csv`, `raw_SupplyChain_5500.csv`, `raw_SupplyChain_5800.csv`, `raw_SupplyChain_6000.csv`, `raw_SupplyChain_B000.csv`, `raw_SupplyChain_C100.csv`, `raw_SupplyChain_C200.csv`, `raw_SupplyChain_D000.csv`, `raw_SupplyChain_F000.csv`, `raw_SupplyChain_G000.csv`, `raw_SupplyChain_I000.csv`, `raw_SupplyChain_L000.csv`, `raw_SupplyChain_M000.csv`, `raw_SupplyChain_P000.csv`, `raw_SupplyChain_R000.csv`, `raw_SupplyChain_R300.csv`, `raw_SupplyChain_T000.csv`, `raw_SupplyChain_U000.csv`, `raw_SupplyChain_V000.csv`, `raw_SupplyChain_X000.csv`
+
 ### Column Definitions:
 
 | Column | Position | Type | Description | Example |
