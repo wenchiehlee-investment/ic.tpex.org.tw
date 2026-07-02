@@ -254,7 +254,7 @@ def update_csv(companies, mappings):
             symbol = ''
             exchange = ''
 
-        process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+        process_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S CST")
         results.append({
             '名稱': name,
             '股票代號': symbol,

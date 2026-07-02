@@ -146,7 +146,7 @@ def get_chain_data(chain_code):
 
 def export_chain_csv(data, chain_code, chain_name, output_path):
     """匯出產業鏈 CSV"""
-    process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    process_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S CST")
     fieldnames = ['位置', '子分類', '代號', '名稱', 'download_timestamp', 'process_timestamp']
 
     with open(output_path, 'w', encoding='utf-8', newline='') as f:
@@ -246,7 +246,7 @@ def build_supply_chain_map(chain_names):
 
     # Write CSV
     output_path = 'data/raw_SupplyChainMap.csv'
-    process_timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    process_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S CST")
     fieldnames = [
         '代號', '名稱', '產業鏈代碼', '產業鏈名稱', '位置', '子分類', '上游公司', '下游公司',
         'download_timestamp', 'process_timestamp'
