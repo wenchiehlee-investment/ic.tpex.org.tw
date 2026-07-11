@@ -1,0 +1,12 @@
+#.github/sync-to-GoogleSheet.Banks.yml
+# GoogleSheet.Banks/fugle_stock_advisor.py 用產業鏈上下游關係（輝達出現在誰的上游/下游）
+# 精確認定 AI 供應鏈股，取代粗粒度的 nVidia概念 布林旗標——只需要總表跟欄位定義，
+# 不用同步 21 個分鏈明細檔。
+group:
+  - files:
+      - source: data/raw_SupplyChainMap.csv
+        dest:   data/ic.tpex.org.tw/raw_SupplyChainMap.csv
+      - source: raw_column_definition_TPEX.md
+        dest:   definitions/raw_column_definition_TPEX.md
+    repos: |
+        WJLEE1020/GoogleSheet.Banks
