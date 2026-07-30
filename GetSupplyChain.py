@@ -27,6 +27,57 @@ VERIFY_SSL = False
 # Global mapping for foreign companies
 FOREIGN_COMPANY_MAP = {}
 
+DEFAULT_CHAINS = {
+    'D000': '半導體',
+    'C100': '製藥',
+    'C200': '醫療器材',
+    'C300': '食品生技',
+    'C400': '再生醫療',
+    'A300': '電動車輛產業',
+    'A200': 'LED照明產業',
+    'A100': '太陽能產業',
+    'AB10': '汽電共生',
+    'AB20': '風力發電',
+    'E000': '能源元件',
+    'AD10': '智慧電網',
+    '5100': '區塊鏈',
+    '5200': '金融科技',
+    '5300': '人工智慧',
+    '5400': '雲端運算',
+    '5500': '資通訊安全',
+    '5600': '大數據',
+    '5700': '體驗科技',
+    '5800': '運動科技',
+    '4100': '太空衛星科技',
+    '6000': '自動化',
+    'B000': '休閒娛樂',
+    'L000': '印刷電路板',
+    'R300': '電子商務',
+    'J000': '被動元件',
+    'I000': '通信網路',
+    'K000': '連接器',
+    'F000': '電腦及週邊設備',
+    'G000': '平面顯示器',
+    'H000': '觸控面板',
+    '1000': '水泥',
+    'M000': '食品',
+    'N000': '石化及塑橡膠',
+    'O000': '紡織',
+    'P000': '電機機械',
+    '2000': '造紙',
+    'Q000': '鋼鐵',
+    '3000': '汽車',
+    'R000': '軟體服務',
+    'S000': '建材營造',
+    'T000': '交通運輸及航運',
+    'U000': '金融',
+    'V000': '貿易百貨',
+    'W000': '油電燃氣',
+    'Y000': '文化創意業',
+    'X000': '其他',
+}
+
+
 def load_foreign_company_map():
     """載入外國企業對照表"""
     global FOREIGN_COMPANY_MAP
@@ -39,6 +90,38 @@ def load_foreign_company_map():
                 if row['名稱'] and row['股票代號']:
                     FOREIGN_COMPANY_MAP[row['名稱']] = row['股票代號']
         print(f"  載入 {len(FOREIGN_COMPANY_MAP)} 筆外國企業對照")
+
+
+def discover_chain_options():
+    """從 ic.tpex 產業類別下拉選單取得完整產業鏈清單。"""
+    url = f"{BASE_URL}/introduce.php?ic=A100"
+    try:
+        print("正在取得完整產業鏈清單...")
+        response = requests.get(url, headers=HEADERS, timeout=60, verify=VERIFY_SSL)
+        response.raise_for_status()
+        response.encoding = 'utf-8'
+        soup = BeautifulSoup(response.text, 'html.parser')
+        select = soup.find('select', id='ic_option')
+        if not select:
+            print("  ⚠️ 找不到產業類別下拉選單，使用內建清單")
+            return DEFAULT_CHAINS
+
+        chains = {}
+        for option in select.find_all('option'):
+            code = option.get('value', '').strip()
+            name = option.get_text(strip=True)
+            if code and name:
+                chains[code] = name
+
+        if not chains:
+            print("  ⚠️ 產業類別下拉選單為空，使用內建清單")
+            return DEFAULT_CHAINS
+
+        print(f"  ✅ 找到 {len(chains)} 個產業鏈")
+        return chains
+    except Exception as e:
+        print(f"  ⚠️ 取得完整產業鏈清單失敗，使用內建清單: {e}")
+        return DEFAULT_CHAINS
 
 def get_chain_data(chain_code):
     """取得產業鏈的完整資料（子分類、位置、公司清單）"""
@@ -66,12 +149,16 @@ def get_chain_data(chain_code):
 
         # Build subcategory info from ic_link elements
         subcategory_info = {}
-        ic_links = re.findall(
-            r'id="ic_link_([A-Z0-9]+)"[^>]*class="company-chain-panel"[^>]*>([^<]+)<',
-            content
+        ic_links = soup.find_all(
+            id=re.compile(r'^ic_link_'),
+            class_=re.compile(r'\bcompany-chain-panel')
         )
 
-        for code, name in ic_links:
+        for link in ic_links:
+            code = link.get('id', '').replace('ic_link_', '').strip()
+            name = link.get_text('', strip=True)
+            if not code or not name:
+                continue
             pos = content.find(f'ic_link_{code}')
             if midstream_pos > 0:
                 if pos < midstream_pos:
@@ -278,30 +365,7 @@ def main():
     # Load foreign company mapping
     load_foreign_company_map()
 
-    # Industry chains to download
-    chains = {
-        'F000': '電腦及週邊設備',
-        'I000': '通信網路',
-        '5300': '人工智慧',
-        '5800': '運動科技',
-        'D000': '半導體',
-        'U000': '金融',
-        'T000': '交通運輸及航運',
-        'B000': '休閒娛樂',
-        'R000': '軟體服務',
-        'C100': '製藥',
-        '5500': '資通訊安全',
-        'V000': '貿易百貨',
-        'R300': '電子商務',
-        '5200': '金融科技',
-        'L000': '印刷電路板',
-        'C200': '醫療器材',
-        'M000': '食品',
-        'X000': '其他',
-        '6000': '自動化',
-        'G000': '平面顯示器',
-        'P000': '電機機械',
-    }
+    chains = discover_chain_options()
 
     for chain_code, expected_name in chains.items():
         print(f"\n處理 {chain_code} ({expected_name})...")
